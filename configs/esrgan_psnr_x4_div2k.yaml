@@ -1,4 +1,5 @@
-total_iters: 1000000
+#1. total_iters: 1000000
+total_iters: 50000
 output_dir: output_dir
 # tensor range for function tensor2img
 min_max:
@@ -18,9 +19,13 @@ model:
 dataset:
   train:
     name: SRDataset
-    gt_folder: data/DIV2K/DIV2K_train_HR_sub
-    lq_folder: data/DIV2K/DIV2K_train_LR_bicubic/X4_sub
-    num_workers: 4
+    #4. gt_folder: data/DIV2K/DIV2K_train_HR_sub
+    gt_folder: data/animeSR/train
+    #5. lq_folder: data/DIV2K/DIV2K_train_LR_bicubic/X4_sub
+    lq_folder: data/animeSR/train_X4
+    #2. num_workers: 4
+    num_workers: 12
+    #3. batch_size: 16
     batch_size: 16
     scale: 4
     preprocess:
@@ -49,8 +54,10 @@ dataset:
             keys: [image, image]
   test:
     name: SRDataset
-    gt_folder: data/Set14/GTmod12
-    lq_folder: data/Set14/LRbicx4
+    #6. gt_folder: data/Set14/GTmod12
+    gt_folder: data/animeSR/test
+    #7. lq_folder: data/Set14/LRbicx4
+    lq_folder: data/animeSR/test_X4
     scale: 4
     preprocess:
       - name: LoadImageFromFile
